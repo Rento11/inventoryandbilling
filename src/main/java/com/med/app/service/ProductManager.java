@@ -14,4 +14,5 @@ public interface ProductManager {
     public boolean deleteProdcutByName(String productName);
     public Product getProductByName(String productName);
     public List<Product> getAllProducts();
+    public boolean deleteProductById(Long productId);
 }

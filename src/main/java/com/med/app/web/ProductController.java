@@ -50,4 +50,13 @@ public class ProductController {
         productManager.addProduct(product);
         return "redirect:products";
     }
+    @GetMapping("/delete_product")
+    public String deleteProduct(Model model, @RequestParam(name = "id") Long id){
+        if(productManager.deleteProductById(id)){
+            return "redirect:products";
+        }
+        else{
+            return "redirect:error";
+        }
+    }
 }

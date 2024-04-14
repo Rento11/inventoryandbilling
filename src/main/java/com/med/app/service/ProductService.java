@@ -47,4 +47,15 @@ public class ProductService implements ProductManager {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
+    @Override
+    public boolean deleteProductById(Long productId) {
+        try {
+            productRepository.deleteById(productId);
+            return true;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }
