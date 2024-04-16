@@ -12,7 +12,7 @@ public interface ProductManager {
     public Product addProduct(Product product);
     public Product updateProduct(Product product);
     public boolean deleteProdcutByName(String productName);
-    public Product getProductByName(String productName);
+    public Product getProductById(Long Id);
     public List<Product> getAllProducts();
     public boolean deleteProductById(Long productId);
 }

@@ -39,8 +39,8 @@ public class ProductService implements ProductManager {
     }
 
     @Override
-    public Product getProductByName(String productName) {
-        return productRepository.findByProductName(productName);
+    public Product getProductById(Long id) {
+        return productRepository.findProductById(id);
     }
 
     @Override

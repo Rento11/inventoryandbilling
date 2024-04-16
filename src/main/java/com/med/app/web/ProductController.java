@@ -6,8 +6,6 @@ import com.med.app.service.ProductManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +48,7 @@ public class ProductController {
         productManager.addProduct(product);
         return "redirect:products";
     }
+
     @GetMapping("/delete_product")
     public String deleteProduct(Model model, @RequestParam(name = "id") Long id){
         if(productManager.deleteProductById(id)){
@@ -59,4 +58,16 @@ public class ProductController {
             return "redirect:error";
         }
     }
+    @GetMapping("/update_product")
+    public String updateProduct(Model model, @RequestParam(name = "id") Long id){
+        Product product = productManager.getProductById(id);
+        model.addAttribute("productToBeUpdated", product);
+        return "update_product";
+    }
+    @PostMapping("/save_updated_product")
+    public String saveUpdatedProduct(@ModelAttribute ("productToBeUpdated") Product product){
+        productManager.updateProduct(product);
+        return "redirect:products";
+    }
+
 }
