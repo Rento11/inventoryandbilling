@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<table class="table table-bordered">
+    <thead class="thead-light">
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:object=" ${productToBeDetailed}">
+        <td th:text="${productToBeDetailed.productName}"></td>
+        <td th:text="${productToBeDetailed.quantity}"></td>
+        <td th:text="${productToBeDetailed.productUnitPrice}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

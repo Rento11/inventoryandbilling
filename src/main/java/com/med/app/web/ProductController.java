@@ -69,5 +69,10 @@ public class ProductController {
         productManager.updateProduct(product);
         return "redirect:products";
     }
-
+    @GetMapping("/product_details")
+    public String details(Model model, @RequestParam(name = "id") Long id){
+        Product product = productManager.getProductById(id);
+        model.addAttribute("productToBeDetailed", product);
+        return "product_details";
+    }
 }
