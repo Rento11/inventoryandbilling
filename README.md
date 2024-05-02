@@ -1,6 +1,6 @@
 # Stock Management and Billing Web Application
 
- A web-based Software as a Service (SaaS) platform designed to simplify stock management and billing processes for businesses. Whether you're a small retailer or a large enterprise, this software will offers intuitive tools to streamline your inventory tracking and invoicing.
+ A web-based Software platform designed to simplify stock management and billing processes for businesses. Whether you're a small retailer or a large enterprise, this software will offers intuitive tools to streamline your inventory tracking and invoicing.
 
 ## Features
 
