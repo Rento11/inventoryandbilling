@@ -35,10 +35,9 @@ public class CustomerController {
     }
 
     @PostMapping("/add_customerPost")
-    public String addCustomerPost(Model model, @RequestParam(name = "customerFirstName") String firstName, @RequestParam(name = "customerLastName") String lastName, @RequestParam(name = "customerEmail") String email, @RequestParam(name = "customerAddress") String address) {
+    public String addCustomerPost(Model model, @RequestParam(name = "customerName") String name, @RequestParam(name = "customerEmail") String email, @RequestParam(name = "customerAddress") String address) {
         Customer customer = new Customer();
-        customer.setFirstName(firstName);
-        customer.setLastName(lastName);
+        customer.setName(name);
         customer.setEmail(email);
         customer.setAddress(address);
         customerManager.addCustomer(customer);
