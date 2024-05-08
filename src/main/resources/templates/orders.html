@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #dee2e6;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #e9ecef;
+        }
+
+        .add-button {
+            margin-bottom: 20px;
+        }
+
+        .delete-btn {
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Order List</h1>
+    <a href="/add_order" class="btn btn-success add-button">Add Order</a>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th>Id</th>
+            <th>Customer</th>
+            <th>Total Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.customer}"></td>
+            <td th:text="${@orderService.getTotalAmount(order)}"></td>
+            <td class="delete-btn">
+                <div>
+                    <a th:href="@{order_details(orderId=${order.getOrderId()})}" class="btn btn-primary">Details</a>
+                    <a th:href="@{update_order(orderId=${order.getOrderId()})}" class="btn btn-warning">Modify</a>
+                    <a th:href="@{delete_order(orderId=${order.getOrderId()})}" class="btn btn-danger">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
