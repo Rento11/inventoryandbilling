@@ -49,19 +49,21 @@
 <body>
 <div class="container">
     <h1>Order List</h1>
-    <a href="/add_order" class="btn btn-success add-button">Add Order</a>
+    <a th:href="@{add_order}" class="btn btn-success add-button">Add Order</a>
     <table class="table table-bordered">
         <thead class="thead-light">
         <tr>
             <th>Id</th>
             <th>Customer</th>
+            <th>Product</th>
             <th>Total Amount</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="order : ${orders}">
             <td th:text="${order.orderId}"></td>
-            <td th:text="${order.customer}"></td>
+            <td th:text="${order.customer.getName()}"></td>
+            <td th:text="${order.products.getFirst().getProductName()}"></td>
             <td th:text="${@orderService.getTotalAmount(order)}"></td>
             <td class="delete-btn">
                 <div>

@@ -15,20 +15,13 @@ import java.util.List;
 @Setter
 @Table(name = "Invoice")
 public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    private String orderDescription;
+    @ManyToOne @JoinColumn(name = "customer_id")
     private Customer customer;
-
-    @ManyToMany
-    @JoinTable(name = "order_product",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @ManyToMany @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
-
 
 
 }

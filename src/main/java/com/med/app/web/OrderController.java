@@ -1,7 +1,9 @@
 package com.med.app.web;
 
 
+import com.med.app.dao.entities.Customer;
 import com.med.app.dao.entities.Order;
+import com.med.app.dao.entities.Product;
 import com.med.app.service.CustomerManager;
 import com.med.app.service.OrderManager;
 import com.med.app.service.ProductManager;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -41,17 +44,21 @@ public class OrderController {
         return "add_order";
     }
 
-    @PostMapping("/add_orderPost")
-    public String saveOrder(@ModelAttribute("order") Order order, Model model) {
-        Order savedOrder = orderManager.addOrder(order);
-        if (savedOrder != null) {
+    @PostMapping("/add_order")
+    public String addOrder2(Model model, @RequestParam(name = "orderDescription") String orderDescription, @RequestParam(name = "product") Long productId, @RequestParam(name = "customer") Long customerId) {
+        Product product1 = productManager.getProductById(productId);
+        Customer customer1 = customerManager.getCustomerById(customerId);
+        Order order = new Order();
+        order.setOrderDescription(orderDescription);
+        order.setProducts(List.of(product1));
+        order.setCustomer(customer1);
+        orderManager.addOrder(order);
+        if (order != null) {
             model.addAttribute("message","Order added successfully");
         } else{
             model.addAttribute("message","Failed");
         }
         return "redirect:/orders";
     }
-
-
 
 }

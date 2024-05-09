@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Order</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4 mb-4">Add Order</h1>
+    <form th:action="@{/add_order}" method="post">
+        <div class="form-group">
+            <label for="orderDescription">Order Description:</label>
+            <input type="text" class="form-control" id="orderDescription" name="orderDescription" required>
+        </div>
+        <div class="form-group">
+            <label for="customer">Customer:</label>
+            <select  class="form-control" id="customer" name="customer">
+                <option th:each="customer : ${customers}" th:value="${customer.getCustomerId()}" th:text="${customer.getName()}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="product">Product:</label>
+            <select class="form-control" id="product" name="product">
+                <option th:each="product : ${products}" th:value="${product.getId()}" th:text="${product.productName}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+</body>
+</html>
